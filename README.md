@@ -52,20 +52,20 @@ If you're particularly mathematically inclined (or have already seen this proble
 recognize this as the [Fibonacci Numbers](http://oeis.org/A000045).<sup>[1]<sup>
 
 As you may have figured out, the number of rabbits in any given year is the sum of the number
-of rabbits in the previous two years. In math, we can write this as: `R(n) = R(n-1) + R(n-2)`,
-`R(0) = 0`, and `R(1) = 1`, where `R(n)` is the number of rabbits in year `n`.
+of rabbits in the previous two years. In math, we can write this as: `rabbits(n) = rabbits(n-1) + rabbits(n-2)`,
+`rabbits(0) = 0`, and `rabbits(1) = 1`, where `rabbits(n)` is the number of rabbits in year `n`.
 
-Wait a minute, if `R(n)` depends on `R(n-1)` and `R(n-2)`, how do we find `R(n)` in the first
-place? Let's work out an example. Without looking back up at the chart, What's `R(4)`?
+Wait a minute, if `rabbits(n)` depends on `rabbits(n-1)` and `rabbits(n-2)`, how do we find `rabbits(n)` in the first
+place? Let's work out an example. Without looking back up at the chart, What's `rabbits(4)`?
 
 ```
-R(4) = R(4-1) + R(4-2)
+rabbits(4) = rabbits(4-1) + rabbits(4-2)
 
-R(4) = R(3) + R(2)
+rabbits(4) = rabbits(3) + rabbits(2)
 
-R(4) = R(3-1) + R(3-2) + R(2-1) + R(2-2)
+rabbits(4) = rabbits(3-1) + rabbits(3-2) + rabbits(2-1) + rabbits(2-2)
 
-R(4) = R(2) + R(1) + R(1) + R(0)
+rabbits(4) = rabbits(2) + rabbits(1) + rabbits(1) + rabbits(0)
 ```
 
 What we just did in that step is something called 'recurrence expansion.' We took the value
@@ -74,18 +74,18 @@ It seems a little silly, since we're still left with R in terms of 4 R's instead
 Let's keep it up, though.
 
 ```
-R(4) = R(2) + 1 + 1 + 0
+rabbits(4) = rabbits(2) + 1 + 1 + 0
 ```
 
-There's our first major breakthrough. We can see from the definition of R that `R(0) = 0` and `R(1) = 1`
-Since that's given, we can **always** replace `R(0)` with `0` and `R(1)` with `1`. Just a bit more to go!
+There's our first major breakthrough. We can see from the definition of R that `rabbits(0) = 0` and `rabbits(1) = 1`
+Since that's given, we can **always** replace `rabbits(0)` with `0` and `rabbits(1)` with `1`. Just a bit more to go!
 
 ```
-R(4) = R(1) + R(0) + 2
+rabbits(4) = rabbits(1) + rabbits(0) + 2
 
-R(4) = 1 + 0 + 2
+rabbits(4) = 1 + 0 + 2
 
-R(4) = 3
+rabbits(4) = 3
 ```
 
 **Ha**! We got it!
@@ -115,7 +115,7 @@ at the classic recursive form.
 
 ``` js
 const R = n => {
-  return n <= 1 ? 1 : R(n-1) + R(n-2)
+  return n <= 1 ? 1 : rabbits(n-1) + rabbits(n-2)
 }
 ```
 
@@ -141,7 +141,7 @@ case is exactly what it sounds like. The recursive case is the real meat of a
 recurrence- where you call the function again with a slightly modified version 
 of the passed value to get closer to the base case. Note that it's _extremely_
 important to have your recursive case 'guide' the function toward the base 
-case (the way that R decrements n towards `R(0)`) in order to keep your program 
+case (the way that R decrements n towards `rabbits(0)`) in order to keep your program 
 from etering an infinite loop.
 
 If that was a bit to abstract for your liking, let's break it down in terms of our 
@@ -165,6 +165,7 @@ material to take in. Once you think you're ready, move on to the lab portion!
 
 ## Resources
 * [Recursion and Memoization](http://rayhightower.com/blog/2014/04/12/recursion-and-memoization/)
+* [What on Earth is Recursion? - Computerphile](https://www.youtube.com/watch?v=Mv9NEXX1VHc&ab_channel=Computerphile)
 
 ## Citations
 1: OEIS Foundation Inc. (2011), The On-Line Encyclopedia of Integer Sequences, http://oeis.org/A000045.
