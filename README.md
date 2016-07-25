@@ -110,8 +110,8 @@ const R = n => {
 }
 ```
 
-That's not particularly pretty. It works, but it isn't pretty. Let's take a look at the classic
-recursive form.
+That's not particularly pretty. It works, but it isn't pretty. Let's take a look 
+at the classic recursive form.
 
 ``` js
 const R = n => {
@@ -119,25 +119,52 @@ const R = n => {
 }
 ```
 
-Much nicer! Writing a function recursively can often lead to much cleaner and more explicit code.
-If we looked at the iterative version, it would be more difficult to glean the underlying mathematical
-formula than if we took a quick glance at the recursive one.
+Much nicer! Writing a function recursively can often lead to much cleaner and 
+more explicit code.If we looked at the iterative version, it would be more 
+difficult to glean the underlying mathematical formula than if we took a quick 
+glance at the recursive one.
 
-It's worth noting that there are two caveats to all of this talk of recursion. The first is that
-writing recursive functions can be risky. If you aren't careful, it's possible to fall into an
-infinite loop and blow through your stack space. The second is that despite being pretty, some recursive
-functions have iterative or explicit versions that are faster by leaps and bounds. Our rabbit function
-can take minutes, if not hours, for even relatively small values of n. There are ways to speed it up,
-and if you're interested, there are some links in the resources section.
+It's worth noting that there are two caveats to all of this talk of recursion. 
+The first is that writing recursive functions can be risky. If you aren't careful, 
+it's possible to fall into an infinite loop and blow through your stack space. 
+The second is that despite being pretty, some recursive functions have iterative 
+or explicit versions that are faster by leaps and bounds. Our rabbit function can 
+take minutes, if not hours, for even relatively small values of n. There are ways 
+to speed it up, and if you're interested, there are some links in the resources 
+section.
 
 ## Writing your own Recursive Functions
-A recursive function has two main parts: the base case and the recursive case. The base case is a hard coded condition
-where the program knows exactly what to do, and doesn't have to do any more calculations down that path. The recursive 
-case is exactly what it sounds like. The recursive case
+A recursive function has two main parts: the base case and the recursive case. 
+The base case is a hard coded condition where the program knows exactly what 
+to do, and doesn't have to do any more calculations down that path. The recursive 
+case is exactly what it sounds like. The recursive case is the real meat of a 
+recurrence- where you call the function again with a slightly modified version 
+of the passed value to get closer to the base case. Note that it's _extremely_
+important to have your recursive case 'guide' the function toward the base 
+case (the way that R decrements n towards `R(0)`) in order to keep your program 
+from etering an infinite loop.
 
+If that was a bit to abstract for your liking, let's break it down in terms of our 
+rabbit function. The base case for  R is when `n=1` or `n=0` (which we can simplify 
+to n <= 1). When R gets to that point, it doesn't need to do any work  down that 
+path. The recursive case for R is when n is any other value. When n isn't 1 or 0,
+R performs its calculation by decreasing n towards the base case. 
+
+This all may seem a bit confusing, but it'll get clearer the more examples you work 
+through. Learning when and how to use recursion can really improve your skill as a
+programmer, and an understanding of the underlying principles is one of the marks
+of a skilled programmer.
+
+
+At this point you might be feeling a bit like this rabbit.
+
+![If you can't see this rabbit, you're really missing out. Please raise an issue.](https://media1.giphy.com/media/11AcrpdgWGIU2A/giphy.gif)
+
+Take a break if you need some time to process this all: it's a lot of complicated
+material to take in. Once you think you're ready, move on to the lab portion!
 
 ## Resources
-* [Speeding up our rabbit counting function](http://rayhightower.com/blog/2014/04/12/recursion-and-memoization/)
+* [Recursion and Memoization](http://rayhightower.com/blog/2014/04/12/recursion-and-memoization/)
 
 
 ## Citations
