@@ -32,12 +32,12 @@ For simplicity, let's say that these rabbits can reproduce twice a year, after t
 year of life. Also, these rabits are magic and live forever. They're mathematically
 convenient rabbits, okay?
 
-In year zero (we're programmers, remember), there is one pair of
-baby rabbits. Since they're too young, they don't produce any babies that year. In year one,
+In year one (we're programmers, remember), there is one pair of
+baby rabbits. Since they're too young, they don't produce any babies that year. In year two,
 those two rabbits have grown up and they're ready make a new pair of baby rabbits next year.
-In year two, they have a new pair of baby rabbits! We now have two pairs of rabbits. In year
-three, the original pair of rabbits makes another pair. In year four, the original pair makes
-another pair. On top of that, the rabbits born in year two are now old enough to make babies,
+In year three , they have a new pair of baby rabbits! We now have two pairs of rabbits. In year
+four , the original pair of rabbits makes another pair. In year five, the original pair makes
+another pair. On top of that, the rabbits born in year three are now old enough to make babies,
 so they do. We now have a total of 5 pairs of bunnies on our hands.
 
 If you're having trouble visualizing the situation, take a look at this graph:
@@ -53,7 +53,7 @@ recognize this as the [Fibonacci Numbers](http://oeis.org/A000045).<sup>[1]<sup>
 
 As you may have figured out, the number of rabbits in any given year is the sum of the number
 of rabbits in the previous two years. In math, we can write this as: `R(n) = R(n-1) + R(n-2)`,
-`R(0) = 1`, and `R(1) = 1`, where `R(n)` is the number of rabbits in year `n`.
+`R(0) = 0`, and `R(1) = 1`, where `R(n)` is the number of rabbits in year `n`.
 
 Wait a minute, if `R(n)` depends on `R(n-1)` and `R(n-2)`, how do we find `R(n)` in the first
 place? Let's work out an example. Without looking back up at the chart, What's `R(4)`?
@@ -74,18 +74,18 @@ It seems a little silly, since we're still left with R in terms of 4 R's instead
 Let's keep it up, though.
 
 ```
-R(4) = R(2) + 1 + 1 + 1
+R(4) = R(2) + 1 + 1 + 0
 ```
 
-There's our first major breakthrough. We can see from the definition of R that `R(0) = 1 = R(1)`
-Since that's given, we can **always** replace `R(0)` and `R(1)` with `1`. Just a bit more to go!
+There's our first major breakthrough. We can see from the definition of R that `R(0) = 0` and `R(1) = 1`
+Since that's given, we can **always** replace `R(0)` with `0` and `R(1)` with `1`. Just a bit more to go!
 
 ```
-R(4) = R(1) + R(0) + 3
+R(4) = R(1) + R(0) + 2
 
-R(4) = 1 + 1 + 3
+R(4) = 1 + 0 + 2
 
-R(4) = 5
+R(4) = 3
 ```
 
 **Ha**! We got it!
@@ -115,7 +115,7 @@ at the classic recursive form.
 
 ``` js
 const R = n => {
-  return n <= 1 : R(n-1) + R(n-2)
+  return n <= 1 ? 1 : R(n-1) + R(n-2)
 }
 ```
 
@@ -165,7 +165,6 @@ material to take in. Once you think you're ready, move on to the lab portion!
 
 ## Resources
 * [Recursion and Memoization](http://rayhightower.com/blog/2014/04/12/recursion-and-memoization/)
-
 
 ## Citations
 1: OEIS Foundation Inc. (2011), The On-Line Encyclopedia of Integer Sequences, http://oeis.org/A000045.
