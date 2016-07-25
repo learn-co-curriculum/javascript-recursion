@@ -32,9 +32,9 @@ For simplicity, let's say that these rabbits can reproduce twice a year, after t
 year of life. Also, these rabits are magic and live forever. They're mathematically
 convenient rabbits, okay?
 
-In year zero (we're programmers, remember), there is one pair of 
-baby rabbits. Since they're too young, they don't produce any babies that year. In year one, 
-those two rabbits have grown up and they're ready make a new pair of baby rabbits next year. 
+In year zero (we're programmers, remember), there is one pair of
+baby rabbits. Since they're too young, they don't produce any babies that year. In year one,
+those two rabbits have grown up and they're ready make a new pair of baby rabbits next year.
 In year two, they have a new pair of baby rabbits! We now have two pairs of rabbits. In year
 three, the original pair of rabbits makes another pair. In year four, the original pair makes
 another pair. On top of that, the rabbits born in year two are now old enough to make babies,
@@ -47,12 +47,12 @@ If you're having trouble visualizing the situation, take a look at this graph:
 For fun, try to figure out the next generation of rabbits on your own.
 
 ## Solving the Rabbits
-If you're particularly mathematically inclined (or have already seen this problem), you may 
+If you're particularly mathematically inclined (or have already seen this problem), you may
 recognize this as the [Fibonacci Numbers](http://oeis.org/A000045).
 
 As you may have figured out, the number of rabbits in any given year is the sum of the number
-of rabbits in the previous two years. In math, we can write this as: `R(n) = R(n-1) + R(n-2)`, `R(0) = 1`, and `R(1) = 1`,
-where `R(n)` is the number of rabbits in year `n`.
+of rabbits in the previous two years. In math, we can write this as: `R(n) = R(n-1) + R(n-2)`,
+`R(0) = 1`, and `R(1) = 1`, where `R(n)` is the number of rabbits in year `n`.
 
 Wait a minute, if `R(n)` depends on `R(n-1)` and `R(n-2)`, how do we find `R(n)` in the first
 place? Let's work out an example. Without looking back up at the chart, What's `R(4)`?
@@ -61,24 +61,28 @@ place? Let's work out an example. Without looking back up at the chart, What's `
 R(4) = R(4-1) + R(4-2)
 
 R(4) = R(3) + R(2)
-```
 
-So that was totally useless, right? Wrong! Let's keep expanding.
-
-```
 R(4) = R(3-1) + R(3-2) + R(2-1) + R(2-2)
 
 R(4) = R(2) + R(1) + R(1) + R(0)
+
 ```
 
-"See, I told you that was useless." - You
-
-No! By the definition of `R`, we know that `R(1) = R(0) = 1`. Keep it up.
+What we just did in that step is something called 'recurrence expansion.' We took the value
+four, plugged it into the definition of the function, and then simplified the constants.
+It seems a little silly, since we're still left with R in terms of 4 R's instead of 2.
+Let's keep it up, though.
 
 ```
 R(4) = R(2) + 1 + 1 + 1
 
-R(4) = R(1) + R(0) + 3
+```
+
+There's our first major breakthrough. We can see from the definition of R that `R(0) = 1 = R(1)`
+Since that's given, we can **always** replace `R(0)` and `R(1)` with `1`. Just a bit more to go!
+
+```
+R(4) = R(1) + R(0) + 3                          
 
 R(4) = 1 + 1 + 3
 
